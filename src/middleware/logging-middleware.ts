@@ -1,6 +1,8 @@
 import {Request, Response} from 'express'
 import {NextFunction} from 'express'
-let i:NextFunction
-export function loggingMiddleware(req:Request, res:Response){
+
+
+export function loggingMiddleware(req:Request, res:Response, next:NextFunction){
     console.log(`Request URL is ${req.url} and Response is ${res}`)
+    next()
 }
