@@ -10,3 +10,9 @@ enum reimburseType{
     Food = "FOOD",
     Other = "OTHER"
 }
+
+enum roleType{
+    admin = "admin",
+    finance = "finance-manager",
+    user = "user"
+}
