@@ -1,5 +1,5 @@
 import {Pool} from 'pg'
-//import { userrouter } from '../routers/user-router'
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,5 +11,4 @@ export const connectionPool:Pool = new Pool({
     port:5432,
     max:5
 })
-
 
