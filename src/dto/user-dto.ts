@@ -2,13 +2,11 @@ export class UserDTO {
     username:string
     password:string
     email:string
-    user_id:number// a unique number for identification
+    user_id:number
     first_name:string
     last_name:string
     role_name:string 
-    role_id:number// their user permissions
-    // user - for you can use the service
-    // admin - you can ban people or add/remove movies
+    role_id:number
     constructor(username:string,
         password:string,
         email:string,

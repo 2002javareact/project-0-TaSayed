@@ -1,7 +1,7 @@
 export class ReimbursementTypes{
     typeId: number
-    type: reimburseType 
-    constructor(typeId: number, type: reimburseType ){
+    type: string
+    constructor(typeId: number, type: string ){
         this.typeId = typeId
         this.type= type
     }

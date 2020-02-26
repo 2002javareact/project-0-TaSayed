@@ -1,7 +1,9 @@
+
+
 export class ReimbursementStatus{
     statusId: number
-    status: statusTypes 
-    constructor(statusId: number, status: statusTypes ){
+    status: string 
+    constructor(statusId: number, status: string ){
         this.statusId = statusId
         this.status= status
     }

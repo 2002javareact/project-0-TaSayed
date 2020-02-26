@@ -1,15 +1,18 @@
+import { ReimbursementStatus } from "./reimbusement-status"
+import { ReimbursementTypes } from "./reimbursement-type"
+
 export class Reimbursement{
     reimbursementId: number
 	author: number
 	amount: number
-    dateSubmitted: number
-    dateResolved: number
+    dateSubmitted: Date
+    dateResolved: Date
     description: string
     resolver: number
-    status: number
-    type: number
-    constructor(reimbursementId: number, author: number, amount: number, dateSubmitted: number, // not null
-      dateResolved: number, description: string, resolver: number, status: number, type: number ){
+    reimbursementStatus:ReimbursementStatus
+    reimbursementType:ReimbursementTypes
+    constructor(reimbursementId: number, author: number, amount: number, dateSubmitted: Date, 
+        dateResolved: Date, description: string, resolver: number, reimbursementStatus: ReimbursementStatus, reimbursementType:ReimbursementTypes ){
         this.reimbursementId = reimbursementId
 	    this.author = author
 	    this.amount = amount
@@ -17,7 +20,8 @@ export class Reimbursement{
         this.dateResolved = dateResolved
         this.description = description
         this.resolver = resolver
-        this.status = status
-        this.type = type
+        this.reimbursementStatus = reimbursementStatus
+        this.reimbursementType = reimbursementType
+        
     }
 }

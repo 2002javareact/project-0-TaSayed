@@ -1,24 +1,28 @@
 import * as express from 'express'
 import * as bodyparser from 'body-parser'
 import { User } from './models/User'
-import { userrouter } from './routers/user-router'
+import { userRouter } from './routers/user-router'
 import {sessionMiddleware} from "./middleware/session-middleware"
 import { HttpError } from './errors/HTTP-Error'
-//import {findUserByUsernameAndPassword} from './service/find-user'
 import {Users} from './database'
-import { findUserByUsernameAndPassword } from './service/find-user'
+import { findUserByUsernameAndPassword, findUserByUserID } from './service/find-user'
+import { authFactory, authCheckId } from './middleware/auth-middleware'
+import { reimburseRouter } from './routers/reimburse-router'
 
 //import {loggingMiddleware} from './middleware/logging-middleware'
 //call express func return obj into app
 const app = express()
 
+
+
 /**
  * CheckList: X = Done, O = TBD,  Y = In Progress
+ * ----------------------------------------------
  * Login X - Add db next
  * Find Users Y - Finance manager
- * Make DB
- * Attach DB O ------------
- * Find Users By ID O - Finance Manager
+ * Make DB X
+ * Attach DB X 
+ * Find Users By ID X - Finance Manager
  * Update User O - Admin
  * Find Reimbursements By Status O - Finance Manager
  * Find Reimbursements By User O - Finance Manager
@@ -45,8 +49,8 @@ app.use(sessionMiddleware)
 app.use("/", bodyparser.json())
 
 //routers
-app.use(userrouter)
-
+app.use(userRouter)
+app.use(reimburseRouter)
 
 /**
  * looks for login and takes 
@@ -63,7 +67,6 @@ app.post("/login", async (req, res)=>{
     }
     try{
         let user:User = await findUserByUsernameAndPassword(username, password)
-        //let user:User = Users[2]
         req.session.user = await user
         res.status(200).json(await user)
     }catch(e){
@@ -71,6 +74,7 @@ app.post("/login", async (req, res)=>{
     }
 })
 
-app.get("/users/:id", (req, res)=>{
-    res.send(req.params.id)
-})
+//list of roles
+
+
+

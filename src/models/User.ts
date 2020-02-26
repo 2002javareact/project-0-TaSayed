@@ -6,11 +6,11 @@ export class User{
     password:string
     emailAddress:string
     user_id:number
-    firstName:String
+    firstName:string
     lastname:string
     role:Role
 
-    constructor(username:string, password:string, emailAddress:string, user_id:number, firstName:String, lastname:string, role:Role){
+    constructor(username:string, password:string, emailAddress:string, user_id:number, firstName:string, lastname:string, role:Role){
             
         this.username=username,
         this.password=password,
