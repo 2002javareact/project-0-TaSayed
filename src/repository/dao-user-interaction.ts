@@ -1,12 +1,12 @@
-import { PoolClient, Pool } from "pg";
 import { connectionPool } from "./index";
 import { User } from "../models/User";
-import { Role } from "../models/Role";
 import { userDTOToUserConverter } from "../util/converter";
 import {BadCredentialsError} from '../errors/bad-credentials-error';
 import {InternalServerError} from '../errors/internal-server';
-import {UserNotFoundError} from '../errors/user-not-found';
-
+/**
+ * @param  {string} username
+ * @param  {string} password
+ */
 export async function daoFindUserByUsernameAndPassword(username:string, password:string):Promise<User>{
     let client:any;
  
@@ -31,7 +31,9 @@ export async function daoFindUserByUsernameAndPassword(username:string, password
     }
 }
 
-
+/**
+ * @param  {number} userID
+ */
 export async function daoFindUserByUserID(userID:number):Promise<User>{
     let client:any;
     
@@ -58,7 +60,9 @@ export async function daoFindUserByUserID(userID:number):Promise<User>{
     }
 }
 
-
+/**
+ * @param  {User} user
+ */
 export async function daoAddUser(user:User):Promise<User>{
     let client:any;
     try {
@@ -82,7 +86,9 @@ export async function daoAddUser(user:User):Promise<User>{
     }
 }
 
-
+/**
+ * @param  {} user
+ */
 export async function daoUpdateUser(user):Promise<User>{
     let client:any;
     try {

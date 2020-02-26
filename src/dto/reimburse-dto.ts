@@ -1,9 +1,13 @@
+import {Moment} from 'moment';
+
+var moment = require('moment')
+
 export class reimburseDTO {
     reimbursementid:number
     author:number
     amount:number
-    dateSubmitted:Date
-    dateResolved:Date
+    datesubmitted:Date
+    dateresolved:Date
     description:string
     resolver:number 
     status:string
@@ -29,8 +33,8 @@ export class reimburseDTO {
             this.reimbursementid = reimbursementid
             this.author = author
             this.amount = amount
-            this.dateSubmitted =new Date(datesubmitted)
-            this.dateResolved = new Date('20190321')
+            this.datesubmitted =datesubmitted
+            this.dateresolved = dateresolved
             this.description = description
             this.resolver = resolver
             this.status = status
@@ -41,11 +45,3 @@ export class reimburseDTO {
         }
 }
 
-function parseDate(input) {
-    var parts = input.split('-');
-    // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-    let e =new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
-    console.log(e);
-    
-    return e
-}

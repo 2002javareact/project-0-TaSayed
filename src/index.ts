@@ -23,11 +23,11 @@ const app = express()
  * Make DB X
  * Attach DB X 
  * Find Users By ID X - Finance Manager
- * Update User O - Admin
- * Find Reimbursements By Status O - Finance Manager
- * Find Reimbursements By User O - Finance Manager
- * Submit Reimbursement O - User
- * Update Reimbursement O - Finance Manager
+ * Update User X - Admin
+ * Find Reimbursements By Status X - Finance Manager
+ * Find Reimbursements By User X - Finance Manager
+ * Submit Reimbursement X - User
+ * Update Reimbursement X - Finance Manager (Added FindReimbursement by ID)
  */
 
 

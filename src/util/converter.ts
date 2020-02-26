@@ -43,8 +43,8 @@ export function reimburseDTOToReimburseConverter(reimburseDTO:reimburseDTO):Reim
         reimburseDTO.reimbursementid,
         reimburseDTO.author,
         reimburseDTO.amount,
-        reimburseDTO.dateSubmitted,
-        reimburseDTO.dateResolved,
+        reimburseDTO.datesubmitted,
+        reimburseDTO.dateresolved,
         reimburseDTO.description,
         reimburseDTO.resolver,
         new ReimbursementStatus(
