@@ -108,8 +108,8 @@ export async function daoUpdateReimbursement(reimburse:Reimbursement):Promise<Re
     try {
         
     client = await connectionPool.connect()
-    let results = await client.query('UPDATE Proj0.reimbursement SET amount  = $2, dateSubmitted = $3, dateResolved =$4,  description  = $5,  status  = $6,  resolver = $7, "type" = $8 WHERE author = $1;',[reimburse.author,reimburse.amount,reimburse.dateSubmitted,reimburse.dateResolved,reimburse.description, reimburse.reimbursementStatus.statusId, reimburse.resolver,reimburse.reimbursementType.typeId]);
-    results = daoFindReimburseByID(reimburse.reimbursementId)
+    let results = await client.query('UPDATE Proj0.reimbursement SET amount  = $2, dateSubmitted = $3, dateResolved =$4,  description  = $5,  status  = $6,  resolver = $7, "type" = $8 WHERE reimbursementid = $1;',[reimburse.reimbursementId,reimburse.amount,reimburse.dateSubmitted,reimburse.dateResolved,reimburse.description, reimburse.reimbursementStatus.statusId, reimburse.resolver,reimburse.reimbursementType.typeId]);
+    results = await daoFindReimburseByID(reimburse.reimbursementId)
     if(results.rowCount === 0){
         throw new Error('User Not Found')
     }

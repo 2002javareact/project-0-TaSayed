@@ -60,6 +60,37 @@ export async function daoFindUserByUserID(userID:number):Promise<User>{
     }
 }
 
+export async function daoFindAllUsers():Promise<User[]>{
+    let client:any;
+    
+    try {
+        client = await connectionPool.connect()
+        
+        // a paramaterized query
+        let results = await client.query('SELECT * FROM Proj0.users U inner join Proj0.roles R on U."role" = R.role_id ',)
+        
+        if(results.rowCount === 0){
+            throw new Error('User Not Found')
+        }
+        let arrUser:User[] = []
+        for(let i = 0; i<results.rowCount; i++){
+            arrUser.push(userDTOToUserConverter(results.rows[i]))
+            
+        }
+        
+        return arrUser
+    } catch(e){       
+        
+        console.log(e);
+        if(e.message === 'User Not Found'){
+            throw new BadCredentialsError()
+        }else {
+            throw new InternalServerError()
+        }
+    } finally {
+        client && client.release()
+    }
+}
 /**
  * @param  {User} user
  */

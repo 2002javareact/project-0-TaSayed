@@ -1,4 +1,4 @@
-import { daoFindUserByUsernameAndPassword, daoFindUserByUserID } from "../repository/dao-user-interaction";
+import { daoFindUserByUsernameAndPassword, daoFindUserByUserID, daoFindAllUsers } from "../repository/dao-user-interaction";
 import { User } from "../models/User";
 
 
@@ -8,4 +8,12 @@ export async function findUserByUsernameAndPassword(username:string, password:st
 
 export async function findUserByUserID(userid:number):Promise<User>{    
     return await daoFindUserByUserID(userid)
+    
+}
+
+
+
+export async function findAllUsers():Promise<User[]>{    
+    return await daoFindAllUsers()
+    
 }

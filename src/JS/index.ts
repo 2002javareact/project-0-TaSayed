@@ -24,10 +24,20 @@ const app = express()
  * Attach DB X 
  * Find Users By ID X - Finance Manager
  * Update User X - Admin
+ * 
  * Find Reimbursements By Status X - Finance Manager
  * Find Reimbursements By User X - Finance Manager
  * Submit Reimbursement X - User
  * Update Reimbursement X - Finance Manager (Added FindReimbursement by ID)
+ * 
+ * 
+ * Potential Next Steps:
+ * -----------------------------------------------
+ * User can change only password
+ * Finance manager cannot see passwords/sensitive data
+ * Clean SQL imports
+ * Admins cannot see each others passwords
+ * Password Hash
  */
 
 
@@ -73,8 +83,6 @@ app.post("/login", async (req, res)=>{
         res.status(e.status)
     }
 })
-
-//list of roles
 
 
 

@@ -1,6 +1,6 @@
 import * as express from 'express'
 import { authFactory, authCheckId } from '../middleware/auth-middleware'
-import { findUserByUserID } from '../service/find-user';
+import { findUserByUserID, findAllUsers } from '../service/find-user';
 import { User } from '../models/User';
 import { sessionMiddleware } from '../middleware/session-middleware';
 import * as bodyparser from 'body-parser'
@@ -100,18 +100,20 @@ userRouter.get('/users/:id', authFactory(financeAuth), authCheckId, async (req,r
 /**
  * @param 
  */
-userRouter.get("/users", (req, res)=>{
-    if(req.session.user.role){
-        if(req.session.user.role.roleId<=2){
-            res.send(req.session.user)
-        //  res.status(200).json(User)
-        }else{
-            res.status(400).send("Invalid Credentials")
-        }
-    }else{
-        res.send("Invalid Credentials")
-    }
+// userRouter.get("/users", authFactory(financeAuth), authCheckId, (req, res)=>{
+//     if(req.session.user.role){
+//         if(req.session.user.role.roleId<=2){
+//             res.send(req.session.user)
+//         //  res.status(200).json(User)
+//         }else{
+//             res.status(400).send("Invalid Credentials")
+//         }
+//     }else{
+//         res.send("Invalid Credentials")
+//     }
+// })
+
+userRouter.get("/users", authFactory(financeAuth), authCheckId, async (req, res)=>{
+    res.json(await findAllUsers());
 })
-
-
 

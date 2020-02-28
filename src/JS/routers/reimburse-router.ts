@@ -13,6 +13,7 @@ import { ReimbursementStatus } from '../models/reimbusement-status';
 import { ReimbursementTypes } from '../models/reimbursement-type';
 import { daoUpdateReimbursement } from '../repository/dao-reimburse-interaction';
 import { updateReimbursement } from '../service/update-reimbursement';
+import { userRouter } from './user-router';
 
 //all app.get to userRouter use ctrl d to go  through the changes.
 
@@ -74,6 +75,9 @@ reimburseRouter.get('/reimbursements/author/userId/:userId', authFactory(allAuth
 
 reimburseRouter.post('/reimbursements', authFactory(allAuth), authCheckId, async (req, res) => {
     let {/**reimbursementId ,*/ author, amount, dateSubmitted, description, resolver, reimbursementType } = req.body
+    if(req.session.user.role && req.session.user.role.role == "user" && author!= req.session.user.userId ){
+        res.status(400).send("Enter a reimbursement for yourself.  Role:User");
+    }
     try {
         if ( /**reimbursementId &&*/ author && amount && dateSubmitted && description &&reimbursementType.type && reimbursementType.typeId) {
             
@@ -109,8 +113,8 @@ reimburseRouter.post('/reimbursements', authFactory(allAuth), authCheckId, async
 
 reimburseRouter.patch('/reimbursements', authFactory(financeAuth), authCheckId, async (req,res)=>{  
     try{
-        let {reimbursementId, author, amount, dateSubmitted, dateResolved, description,  resolver, reimbursementStatus,reimbursementType } = req.body
-        if ( reimbursementId && author && amount && dateSubmitted && dateResolved && description && resolver && reimbursementStatus.statusId && reimbursementStatus.status&&reimbursementType.type && reimbursementType.typeId)
+        let {reimbursementId, author, amount, dateResolved, description,  resolver, reimbursementStatus,reimbursementType } = req.body
+        if ( reimbursementId && author && amount  && dateResolved && description && resolver && reimbursementStatus.statusId && reimbursementStatus.status&&reimbursementType.type && reimbursementType.typeId)
             {
             let pulledReimbursement = findReimburseByID(reimbursementId)
             let reimburse:Reimbursement = new Reimbursement(
