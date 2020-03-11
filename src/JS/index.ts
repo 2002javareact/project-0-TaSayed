@@ -8,6 +8,7 @@ import {Users} from './database'
 import { findUserByUsernameAndPassword, findUserByUserID } from './service/find-user'
 import { authFactory, authCheckId } from './middleware/auth-middleware'
 import { reimburseRouter } from './routers/reimburse-router'
+import { corsFilter } from './middleware/cors-filter'
 
 //import {loggingMiddleware} from './middleware/logging-middleware'
 //call express func return obj into app
@@ -57,7 +58,7 @@ app.use(sessionMiddleware)
 
 /** reads the page for us */
 app.use("/", bodyparser.json())
-
+app.use(corsFilter)
 //routers
 app.use(userRouter)
 app.use(reimburseRouter)
